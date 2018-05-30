@@ -1,0 +1,79 @@
+<template>
+  <div id="my">
+    <div id="my-love" class="my-icon">
+      <font-awesome-icon :icon="['fas','heart']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
+      <span>收藏</span>
+      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>      
+    </div>
+    <div id="recent" class="my-icon">
+      <font-awesome-icon :icon="['fas','clock']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
+      <span>最近播放</span>
+      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
+    </div>
+    <div id="my-list" class="my-icon">
+      <font-awesome-icon :icon="['fas','music']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
+      <span>歌单</span>
+      <font-awesome-icon :icon="['fas','angle-down']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  
+}
+</script>
+<style lang="stylus" scoped>
+#my{
+  width 100%
+  height 100%
+  color white
+  transition all 2s ease
+  .my-icon{
+    width 350px
+    //height 50px
+    line-height 50px
+    margin-left 100px
+    cursor pointer
+    padding 10px 25px
+    position relative
+    border-radius 40px
+    transition all 1s ease-in-out
+    background rgba(255,255,255,0);
+    .fa-angle-right{
+      transition all 1s ease-in-out
+      opacity 0
+    }
+    
+    &:hover{
+      background: rgba(217,167,199,0.6);  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to left, rgba(217,167,199,0.6), rgba(255,252,220,0.6),transparent);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, rgba(217,167,199,0.6), rgba(255,252,220,0.6),transparent); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      .fa-angle-right{
+        opacity 1
+      }
+     
+    }
+    span{
+      font-size 25px
+    }
+  }
+  #my-love{
+    
+  }
+  #recent{
+   
+  }
+  #my-list{
+   .fa-angle-down{
+      transition all 1s ease-in-out
+      opacity 0
+    }
+    &:hover{
+       .fa-angle-down{
+        transition all 1s ease-in-out
+        opacity 1
+      } 
+    }
+  }
+}
+</style>

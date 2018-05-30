@@ -15,8 +15,17 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  
   color: #2c3e50;
-  margin-top: 60px;
+  
+  background url('../static/images/bg.jpg')
+  position absolute
+  top 0px
+  left 0px
+  right 0px
+  bottom 0px
+  background-size 100% 100%
+
+  font-family SoukouMincho
 }
 </style>
