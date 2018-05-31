@@ -1,5 +1,12 @@
 <template>
     <div id="btnlist">
+      <div class="expand" >
+          <span class="play-icon">
+            <font-awesome-icon @click="play" v-if="!expand" :icon="['fas','expand']" size="2x" style="margin:8px 0;"></font-awesome-icon>               
+            <font-awesome-icon @click="play" v-else :icon="['fas','compress']" size="2x" style="margin:8px 0;"></font-awesome-icon>               
+            
+          </span>
+      </div>
       <div class="play-mode" >
           <span class="play-icon" title="切换模式">
             <font-awesome-icon :icon="['fas','sync-alt']" size="2x" style="margin:8px 0;"></font-awesome-icon> 
@@ -25,8 +32,32 @@
     </div>
 </template>
 <script>
+import {mapGetters,mapMutations,mapActions} from 'vuex'
 export default {
-  
+  data(){
+      return {
+          canExpand:true
+      }
+  },
+  methods:{
+      ...mapMutations({
+          setExpand:'SET_EXPAND'
+      }),
+      play(){
+          if(this.canExpand){
+            this.canExpand=false;
+            setTimeout(()=>{
+                  this.setExpand(!this.expand);
+                  this.canExpand=true;
+                },0);
+          }
+      }
+  },
+  computed:{
+      ...mapGetters([
+            'expand'
+        ])
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -40,7 +71,7 @@ export default {
         border-radius 40px
         background transparent
         transition all 1s ease  
-        opacity 0.7
+        opacity 0.5
         &:hover{
             opacity 1
             
@@ -49,12 +80,12 @@ export default {
             background: linear-gradient(to right,rgba(253,116,108,0.4) , rgba(64,58,62,0.4)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         }
-        z-index 2
+        z-index 3
     }
     #btnlist>div{
         float left
         vertical-align middle
-        margin 0 20px
+        margin 0 15px
     }
     .btn-icon{
         display block
@@ -72,7 +103,11 @@ export default {
         position relative
         color #f1f1f1
         cursor pointer
-        
+        transform scaleX(1) scaleY(1)
+        transition all 1s
+        &:hover{
+            transform scaleX(1.5) scaleY(1.5) 
+        }
     }
     .play-control .play-icon{
         margin 0 8px

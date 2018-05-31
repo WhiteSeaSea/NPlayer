@@ -1,19 +1,28 @@
 <template>
   <div id="player">
-    <Browser></Browser>
-    <List></List>
-    <Btnlist></Btnlist>
+    <Browser  class="animated " :class="{'slideInLeft':!expand,'slideOutLeft':expand}"></Browser>
+    <List  class="animated " :class="{'slideInRight':!expand,'slideOutRight':expand}"></List>
+    <Btnlist ></Btnlist>
+    <Words></Words>
   </div>
 </template>
 <script>
 import Btnlist from "./components/btnlist/btnlist"
 import Browser from "./songbrowser/browser"
-import List from "./songlist/list.vue"
+import List from "./songlist/list"
+import Words from './words/words'
+import {mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
   components:{
     Btnlist,
     List,
-    Browser
+    Browser,
+    Words
+  },
+  computed:{
+    ...mapGetters([
+      'expand'
+    ])
   }
 }
 </script>
@@ -24,5 +33,10 @@ export default {
     bottom 0
     left 0
     right 0
+    .animated{
+      animation-duration: 2.5s;    //动画持续时间
+      
+    }
   }
+  
 </style>

@@ -15,7 +15,7 @@ export default {
     right 0
     bottom 0
     width 50vw
-    z-index 1
+    z-index 2
     border-top-left-radius 50%
     border-bottom-left-radius 50%
     background: rgba(217,167,199,0.6);  /* fallback for old browsers */
