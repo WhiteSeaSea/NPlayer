@@ -18,14 +18,13 @@ export default {
   
   color: #2c3e50;
   
-  background url('../static/images/bg.jpg')
+  
   position absolute
   top 0px
   left 0px
   right 0px
   bottom 0px
-  background-size 100% 100%
-
+  
   font-family SoukouMincho
 }
 </style>

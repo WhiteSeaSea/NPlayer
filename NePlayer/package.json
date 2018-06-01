@@ -18,6 +18,7 @@
     "ajv": "^6.5.0",
     "animate.css": "^3.6.1",
     "animejs": "^2.2.0",
+    "pixi.js": "^4.8.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.2",

@@ -2,7 +2,7 @@
   <div id="player">
     <Browser  class="animated " :class="{'slideInLeft':!expand,'slideOutLeft':expand}"></Browser>
     <List  class="animated " :class="{'slideInRight':!expand,'slideOutRight':expand}"></List>
-    <Btnlist ></Btnlist>
+    <Btnlist class="animated fadeIn"></Btnlist>
     <Words></Words>
   </div>
 </template>
@@ -33,6 +33,8 @@ export default {
     bottom 0
     left 0
     right 0
+    background-size 100% 100%
+    background url('../../static/images/bg.jpg')
     .animated{
       animation-duration: 2.5s;    //动画持续时间
       
