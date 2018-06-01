@@ -5,7 +5,7 @@
         NePlayer
         <span>-- for NeteaseCloud</span>
       </div>
-      <video class="animated zoomIn" id="bg-video"  autoplay="autoplay" loop="loop" width="1000px" height="600px">
+      <video class="animated zoomIn" id="bg-video"  autoplay="autoplay" loop="loop">
         <source  src="../../static/images/sona.mp4" type="video/mp4">
       </video>
     </div>
@@ -19,7 +19,8 @@ export default {
     Box
   },
   mounted:function(){
-    
+    let box=document.getElementById("bg-video");
+    box.play();
   }
 }
 </script>
@@ -38,7 +39,7 @@ export default {
 }
 #bg{
   z-index 1
-  transform: perspective(1000px) rotateY(0deg);
+  transform: perspective(100vw) rotateY(0deg);
   transform-style:preserve-3d;
   .animated{
       animation-duration: 2.5s;    //动画持续时间
@@ -50,7 +51,7 @@ export default {
     span{
       font-size 26px
     }
-    transform rotateY(40deg)  translateX(250px)
+    transform rotateY(40deg)  translateX(23vw)
     position absolute
     top 5vh
     left 10vw
@@ -61,12 +62,14 @@ export default {
   }
 }
 #bg-video{
-  transform rotateY(40deg)  translateX(100px)
+  transform rotateY(40deg)  translateX(2vw)
   position absolute
   top 20vh
   left 10vw
   box-shadow   0 0 25px #141E30
   object-fit fill
+  width 60vw
+  height 60vh
   
 }
 
