@@ -17,6 +17,10 @@ Vue.config.productionTip = false
 
 import 'animate.css'
 import store from './store'
+
+import axios from 'axios'
+
+Vue.prototype.$http=axios;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

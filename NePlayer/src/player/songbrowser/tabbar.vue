@@ -3,7 +3,8 @@
     
     <ul>
       <li id="user" title="登录">
-        <font-awesome-icon :icon="['fas','user-circle']" size="4x" style="color:white;"></font-awesome-icon>         
+        <!-- <font-awesome-icon :icon="['fas','user-circle']" size="4x" style="color:white;"></font-awesome-icon>          -->
+        <img :src="iconUrl" alt="" srcset="">
       </li>
       <li><a href="#" class="active">我的</a></li>
       <li><a href="#">推荐</a></li>
@@ -13,8 +14,27 @@
   </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
+import {userInfo} from '../../api/index.js'
 export default {
-  
+  data(){
+    return {
+      iconUrl:''
+    }
+  },
+  mounted:function(){
+    userInfo(this.uid).then((res)=>{
+      if(res.data.code===200){
+        this.iconUrl=res.data.profile.avatarUrl;
+        console.log(this.iconUrl)
+      }
+    })
+  },
+  computed:{
+    ...mapGetters([
+      'uid'
+    ])
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -27,6 +47,10 @@ export default {
     width 48px
     height 48px
     margin-right 30px
+    img {
+      width 48px
+      height 48px
+    }
   }
   ul{
     li{

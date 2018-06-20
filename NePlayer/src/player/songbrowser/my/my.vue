@@ -1,16 +1,16 @@
 <template>
   <div id="my">
-    <div id="my-love" class="my-icon">
+    <div id="my-love" class="my-icon" v-on:click="getMylove">
       <font-awesome-icon :icon="['fas','heart']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>收藏</span>
       <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>      
     </div>
-    <div id="recent" class="my-icon">
+    <div id="recent" class="my-icon" v-on:click="getRecent">
       <font-awesome-icon :icon="['fas','clock']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>最近播放</span>
       <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
     </div>
-    <div id="my-list" class="my-icon">
+    <div id="my-list" class="my-icon" v-on:click="getUserList">
       <font-awesome-icon :icon="['fas','music']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>歌单</span>
       <font-awesome-icon :icon="['fas','angle-down']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
@@ -18,8 +18,36 @@
   </div>
 </template>
 <script>
+import {mapGetters,mapActions,mapMutations} from 'vuex'
+import {userList,playList,recentList} from '../../../api/index.js'
 export default {
-  
+  computed:{
+    ...mapGetters([
+      'uid'
+    ])
+  },
+  methods:{
+    getMylove:function(){
+      
+      userList(this.uid).then((res)=>{
+         console.log(res.data)
+          playList(res.data.playlist["0"].id).then((res)=>{
+            console.log(res)
+          })
+      })
+    },
+    getRecent:function(){
+      recentList(this.uid).then((res)=>{
+
+      })
+    },
+    getUserList:function(){
+       userList(this.uid).then((res)=>{
+         
+      })
+    },
+    ...mapActions(["setCurrentList"])
+  }
 }
 </script>
 <style lang="stylus" scoped>

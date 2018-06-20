@@ -11,22 +11,60 @@
                              
         </div>
         <div id="user" class="input-form">
-            <input type="text" name="" >
+            <input type="text" name="" v-model="id">
+            
             <font-awesome-icon :icon="['fas','user']" size="2x" style="color:#cfdef3;position:absolute;right:15px;top:14px;"></font-awesome-icon>            
         </div>
         <div id="password" class="input-form">
-            <input type="password" name="" >
+            <input type="password" name="" v-model="password">
             <font-awesome-icon :icon="['fas','lock']" size="2x" style="color:#cfdef3;position:absolute;right:15px;top:14px;"></font-awesome-icon>
         </div>
-        <a id="confirm" href="#/player/my">
+        <a id="confirm" v-on:click="Login">
           LOGIN
         </a>
       </div>
     </div>  
 </template>
 <script>
+import {login} from '../api/index.js'
+import {mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
-  
+  data(){
+    return {
+        id:'',
+        password:''
+    }
+  },
+  computed:{
+    ...mapGetters([
+      'uid'
+    ])
+  },
+  methods:{
+    Login:function(){
+       //console.log(this.$router.push)
+      login(this.id,this.password)
+            .then((res)=>{
+                
+                if(res.data.code===200){
+                  
+                  this.$router.push({path:'/player/my'});
+                  this.setUid(res.data.account.id);
+                  
+                }else{
+                  if(res.data.msg){
+                    alert(res.data.msg)
+                  }else{
+                    alert("登陆失败，请重试")
+                  }
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+    },
+    ...mapActions(['setUid'])
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -97,6 +135,7 @@ export default {
         transform scaleX(1.1) scaleY(1.1)
         box-shadow 0 0 20px 0 #cfdef3
       }
+      cursor pointer
     }
   }
 }
