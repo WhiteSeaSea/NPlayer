@@ -49,7 +49,7 @@ export const recentList=(id) => {
   return axios.get(url,{
     params:{
       uid:id,
-      type:1
+      type:0
     }
   })
 }
@@ -59,6 +59,24 @@ export const songDetail=(id)=>{
   return axios.get(url,{
     params:{
       ids:id
+    }
+  })
+}
+//获取歌曲url
+export const songUrl=(id)=>{
+  const url=`${URL}/music/url`;
+  return axios.get(url,{
+    params:{
+      id:id
+    }
+  })
+}
+//获取歌词
+export const getLyric=(id)=>{
+  const url=`${URL}/lyric`;
+  return axios.get(url,{
+    params:{
+      id:id
     }
   })
 }

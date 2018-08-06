@@ -52,7 +52,7 @@ export default {
     },
     getRecent:function(){
       recentList(this.uid).then((res)=>{
-
+        console.log(res)
       })
     },
     getUserList:function(){

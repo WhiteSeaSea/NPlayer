@@ -11,7 +11,7 @@
         时长
       </div>
     </div>
-    <div class="song-item" v-for="(song,index) in currentList" :key="song.id">
+    <div class="song-item" v-for="(song,index) in currentList" :key="song.id"  @dblclick="getPlay(song,index,$event)">
       <div class="song-index">
         {{index+1}}.
       </div>
@@ -29,7 +29,7 @@
 </template>
 <script>
 import {mapGetters,mapActions,mapMutations} from 'vuex'
-import {songDetail} from '../../api/index.js'
+import {songDetail,songUrl,getLyric} from '../../api/index.js'
 export default {
   mounted() {
    
@@ -42,13 +42,41 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'currentList'
+      'currentList','currentMusic','audio','lyric'
     ])
     
 
   },
   methods:{
-    
+    getPlay(item,index,e){
+      if(item.id==this.currentMusic.id){
+        return
+      }else{
+        this.setCurrentMusic(item);
+      }
+      getLyric(item.id)
+      .then((res)=>{
+        this.setLyric(res.data.lrc.lyric);
+        let lyricArr=this.lyric.split("\n");
+        let lyricObj=[];
+        for(let i=0;i<lyricArr.length;i++){
+          let lyric = decodeURIComponent(lyricArr[i]);
+          let timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
+          let timeRegExpArr = lyric.match(timeReg);
+          console.log(timeRegExpArr)
+          console.log(lyric)
+        }
+       
+      });
+      songUrl(item.id)
+        .then((res)=>{
+          
+          this.audio.src=res.data.data["0"].url;
+          this.audio.play();
+        })
+    },
+    ...mapActions(["setCurrentMusic","setLyric"])
+  
   },
   filters:{
     formatTime(value){
@@ -70,7 +98,7 @@ export default {
       let temp=value.map(function(value){
         return value.name
       });
-      console.log(temp)
+      
       return temp.join('/')
     }
   }

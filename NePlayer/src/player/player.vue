@@ -33,7 +33,8 @@ export default {
     bottom 0
     left 0
     right 0
-    background-size 100% 100%
+    //background-size 100% 100%
+    background-position: center
     background url('../../static/images/bg.jpg')
     .animated{
       animation-duration: 2.5s;    //动画持续时间

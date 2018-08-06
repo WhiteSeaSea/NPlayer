@@ -1,12 +1,28 @@
 <template>
   <div id="app">
     <router-view />
+    <audio ref="NebulasPlayer"></audio>
   </div>
 </template>
 
 <script>
+import {mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  created(){
+    this.$nextTick(() => {
+               
+              this.setAudio(this.$refs.NebulasPlayer)
+          });
+  },
+  computed:{
+    ...mapGetters([
+      'audio'
+    ])
+  },
+  methods:{
+    ...mapActions(["setAudio"])
+  }
 }
 </script>
 

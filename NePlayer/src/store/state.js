@@ -1,6 +1,9 @@
 const state={
   expand:false,
   uid:null,
-  currentList:[]
+  currentList:[],
+  currentMusic:[],
+  audio:null,
+  lyric:null
 };
 export default state

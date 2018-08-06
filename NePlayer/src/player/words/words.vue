@@ -1,11 +1,23 @@
 <template>
   <div id="words">
-
+    {{this.currentMusic.id}}
   </div>
 </template>
 <script>
+import {mapGetters,mapActions,mapMutations} from 'vuex'
+import {getLyric} from '../../api/index.js'
 export default {
-  
+  computed:{
+    ...mapGetters([
+      'currentMusic'
+    ])
+  },
+  mounted() {
+    getLyric(this.currentMusic.id)
+      .then((res)=>{
+        
+      })
+  },
 }
 </script>
 <style lang="stylus" scoped>
