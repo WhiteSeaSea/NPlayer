@@ -1,6 +1,6 @@
 const state={
   expand:false,
   uid:null,
-  currentlist:[]
+  currentList:[]
 };
 export default state

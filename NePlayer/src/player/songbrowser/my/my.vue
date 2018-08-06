@@ -19,7 +19,7 @@
 </template>
 <script>
 import {mapGetters,mapActions,mapMutations} from 'vuex'
-import {userList,playList,recentList} from '../../../api/index.js'
+import {userList,playList,recentList,songDetail} from '../../../api/index.js'
 export default {
   computed:{
     ...mapGetters([
@@ -27,13 +27,27 @@ export default {
     ])
   },
   methods:{
-    getMylove:function(){
+    getMylove: function(){
       
       userList(this.uid).then((res)=>{
-         console.log(res.data)
-          playList(res.data.playlist["0"].id).then((res)=>{
-            console.log(res)
+         
+          playList(res.data.playlist["0"].id).then( (res)=>{
+            let songs=new Array();
+            let temp= Promise.all(res.data.privileges.map(async function(value,index){
+              let song=[];
+              await songDetail(value.id)
+                .then( (res)=>{   song=res.data.songs["0"];});
+                
+                return song
+            }))
+            temp.then((res)=>{this.setCurrentList(res)})
+           
+            
+            
           })
+          .catch(function(error){
+                console.log(error)
+            })
       })
     },
     getRecent:function(){

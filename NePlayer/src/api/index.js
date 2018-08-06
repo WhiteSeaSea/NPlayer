@@ -53,3 +53,12 @@ export const recentList=(id) => {
     }
   })
 }
+//获取歌曲详情
+export const songDetail=(id)=>{
+  const url=`${URL}/song/detail`;
+  return axios.get(url,{
+    params:{
+      ids:id
+    }
+  })
+}
