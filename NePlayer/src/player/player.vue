@@ -3,7 +3,7 @@
     <Browser  class="animated " :class="{'slideInLeft':!expand,'slideOutLeft':expand}"></Browser>
     <List  class="animated " :class="{'slideInRight':!expand,'slideOutRight':expand}"></List>
     <Btnlist class="animated fadeIn"></Btnlist>
-    <Words></Words>
+    <Words class="animated" :class="{'fadeIn':expand,'fadeOut':!expand}"></Words>
   </div>
 </template>
 <script>
@@ -21,8 +21,15 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'expand'
+      'expand',
+      'currentIndex',
+      'currentMusic'
     ])
+  },
+  watch:{
+    currentMusic(newMusic,oldMusic){
+
+    }
   }
 }
 </script>

@@ -15,3 +15,9 @@ export const setAudio=function({commit},audio){
 export const setLyric=function({commit},lyric){
   commit(types.SET_LYRIC,lyric)
 }
+export const setPlaying=function({commit},playing){
+  commit(types.SET_PLAYING,playing)
+}
+export const setCurrentIndex=function({commit},index){
+  commit(types.SET_CURRENTINDEX,index)
+}

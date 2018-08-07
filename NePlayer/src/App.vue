@@ -11,9 +11,8 @@ export default {
   name: 'App',
   created(){
     this.$nextTick(() => {
-               
-              this.setAudio(this.$refs.NebulasPlayer)
-          });
+        this.setAudio(this.$refs.NebulasPlayer)
+    });
   },
   computed:{
     ...mapGetters([
@@ -42,5 +41,9 @@ export default {
   bottom 0px
   
   font-family SoukouMincho
+
+   
+      
 }
+
 </style>

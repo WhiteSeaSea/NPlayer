@@ -1,30 +1,34 @@
 <template>
   <div id="list">
     <div id="song-header">
-      <div class="song-name">
-        歌曲
+        <div class="song-name">
+          歌曲
+        </div>
+        <div class="singer">
+          歌手
+        </div>
+        <div class="song-time">
+          时长
+        </div>
       </div>
-      <div class="singer">
-        歌手
-      </div>
-      <div class="song-time">
-        时长
+    <div id="inner-list">
+      
+      <div class="song-item" v-for="(song,index) in currentList" :key="song.id"  @dblclick="getPlay(song,index,$event)">
+        <div class="song-index">
+          {{index+1}}.
+        </div>
+        <div class="song-name">
+          {{song.name}}
+        </div>
+        <div class="singer" :title="song.ar | formatAr">
+          {{song.ar | formatAr}}
+        </div>
+        <div class="song-time">
+          {{song.dt | formatTime}}
+        </div>
       </div>
     </div>
-    <div class="song-item" v-for="(song,index) in currentList" :key="song.id"  @dblclick="getPlay(song,index,$event)">
-      <div class="song-index">
-        {{index+1}}.
-      </div>
-      <div class="song-name">
-        {{song.name}}
-      </div>
-      <div class="singer" :title="song.ar | formatAr">
-        {{song.ar | formatAr}}
-      </div>
-      <div class="song-time">
-        {{song.dt | formatTime}}
-      </div>
-    </div>
+    
   </div>
 </template>
 <script>
@@ -50,32 +54,70 @@ export default {
   methods:{
     getPlay(item,index,e){
       if(item.id==this.currentMusic.id){
-        return
+        return 
       }else{
         this.setCurrentMusic(item);
+        this.setCurrentIndex(index);
       }
       getLyric(item.id)
       .then((res)=>{
-        this.setLyric(res.data.lrc.lyric);
-        let lyricArr=this.lyric.split("\n");
+        
+        let lyricArr=res.data.lrc.lyric.split("\n");
         let lyricObj=[];
+        let timeRegExpArr =[];
+        let lyricStr=[];
         for(let i=0;i<lyricArr.length;i++){
           let lyric = decodeURIComponent(lyricArr[i]);
-          let timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
-          let timeRegExpArr = lyric.match(timeReg);
-          console.log(timeRegExpArr)
-          console.log(lyric)
-        }
-       
-      });
-      songUrl(item.id)
-        .then((res)=>{
           
-          this.audio.src=res.data.data["0"].url;
-          this.audio.play();
+          if(lyric==""){
+            continue
+          }else{
+            let timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
+            if(lyric.match(timeReg)==undefined){
+              continue
+            }else{
+              timeRegExpArr.push(lyric.match(timeReg));
+              lyricStr.push(lyric.replace(lyric.match(timeReg).join(""),''));
+            }
+            
+          }
+          
+        }
+        for(let i=0;i<lyricStr.length;i++){
+          let t,min,sec,time;
+          if(timeRegExpArr[i].length<=1){
+            t=timeRegExpArr[i].join("");
+            min=Number(String(t.match(/\[\d*/i)).slice(1));
+            sec=Number(String(t.match(/\:\d*((\.|\:)\d*)*/i)[0]).slice(1));
+            
+
+            time=min*60+sec;
+            lyricObj.push({time:time,lyric:lyricStr[i]}); 
+          }else{
+            for(let j=0;j<timeRegExpArr[i].length;j++){
+              t=timeRegExpArr[i][j];
+              min=Number(String(t.match(/\[\d*/i)).slice(1));
+              sec=Number(String(t.match(/\:\d*((\.|\:)\d*)*/i)[0]).slice(1));
+              
+              time=min*60+sec;
+              lyricObj.push({time:time,lyric:lyricStr[i]}); 
+            }
+          }
+        }
+        lyricObj.sort((a,b)=>{
+          return a.time-b.time
         })
+        this.setLyric(lyricObj.filter((v)=>{
+           return v.lyric!=""
+        }));
+        
+      });
+      this.audio.src="http://music.163.com/song/media/outer/url?id="+item.id+".mp3";
+      this.audio.play();
+      this.setPlaying(true);
+      
     },
-    ...mapActions(["setCurrentMusic","setLyric"])
+    ...mapActions(["setCurrentMusic","setLyric","setPlaying","setCurrentIndex"])
   
   },
   filters:{
@@ -121,6 +163,16 @@ export default {
     font-size 20px
     font-family youyuan
     font-weight 300
+    
+    #inner-list{
+      height calc(100% - 50px)
+      width 100%
+      overflow hidden
+      &:hover{
+        overflow auto
+      }
+      
+    }
     #song-header{
       font-family SoukouMincho
       color #f5f5f5

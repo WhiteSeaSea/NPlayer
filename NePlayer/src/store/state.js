@@ -4,6 +4,8 @@ const state={
   currentList:[],
   currentMusic:[],
   audio:null,
-  lyric:null
+  lyric:null,
+  playing:false,
+  currentIndex:0
 };
 export default state
