@@ -46,7 +46,7 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'currentList','currentMusic','audio','lyric'
+      'currentList','currentMusic','audio','lyric','index'
     ])
     
 

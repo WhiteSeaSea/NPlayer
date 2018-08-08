@@ -6,6 +6,6 @@ const state={
   audio:null,
   lyric:null,
   playing:false,
-  currentIndex:0
+  index:0
 };
 export default state

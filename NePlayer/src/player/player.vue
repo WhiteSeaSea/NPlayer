@@ -13,6 +13,11 @@ import List from "./songlist/list"
 import Words from './words/words'
 import {mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
+  data(){
+    return {
+      //played:document.getElementsByTagName("audio")[0].ended
+    }
+  },
   components:{
     Btnlist,
     List,
@@ -20,15 +25,26 @@ export default {
     Words
   },
   computed:{
+    played:{
+      get:function(){
+        console.log(this.audio.ended)
+         return this.audio.ended
+      },
+      set:function(v){
+        console.log(v)
+      }
+      
+    },
     ...mapGetters([
+      'audio',
       'expand',
-      'currentIndex',
+      'index',
       'currentMusic'
     ])
   },
   watch:{
-    currentMusic(newMusic,oldMusic){
-
+    played(newV,oldV){
+      console.log(newV)
     }
   }
 }
