@@ -13,7 +13,13 @@
       </div>
     <div id="inner-list">
       
-      <div class="song-item" v-for="(song,index) in currentList" :key="song.id"  @dblclick="getPlay(song,index,$event)">
+      <div 
+        class="song-item" 
+        v-for="(song,index) in currentList" 
+        :key="song.id"  
+        @dblclick="getPlay(song,index,$event)"
+        :class="{active:index==currentIndex}"
+      >
         <div class="song-index">
           {{index+1}}.
         </div>
@@ -46,7 +52,7 @@ export default {
   },
   computed:{
     ...mapGetters([
-      'currentList','currentMusic','audio','lyric','index'
+      'currentList','currentMusic','audio','lyric','currentIndex'
     ])
     
 
@@ -171,6 +177,10 @@ export default {
       &:hover{
         overflow auto
       }
+      .active{
+        box-shadow 0px 0px 50px 0px rgba(255,255,255,0.6) inset
+        color white
+      }
       
     }
     #song-header{
@@ -223,8 +233,7 @@ export default {
       position relative
       transition all 1s
       &:hover{
-        box-shadow 0px 0px 50px 0px rgba(255,255,255,0.6) inset
-        color white
+        border  1px solid white
         //background: rgba(95,195,228,0.8);  /* fallback for old browsers */
         //background: -webkit-linear-gradient(135deg, rgba(95,195,228,0.8), rgba(95,195,228,0.6),transparent);  /* Chrome 10-25, Safari 5.1-6 */
         //background: linear-gradient(135deg, rgba(95,195,228,0.8), rgba(95,195,228,0.6),transparent); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

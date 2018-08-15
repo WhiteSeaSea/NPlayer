@@ -25,27 +25,16 @@ export default {
     Words
   },
   computed:{
-    played:{
-      get:function(){
-        console.log(this.audio.ended)
-         return this.audio.ended
-      },
-      set:function(v){
-        console.log(v)
-      }
-      
-    },
+    
     ...mapGetters([
       'audio',
       'expand',
-      'index',
+      'currentIndex',
       'currentMusic'
     ])
   },
   watch:{
-    played(newV,oldV){
-      console.log(newV)
-    }
+    
   }
 }
 </script>

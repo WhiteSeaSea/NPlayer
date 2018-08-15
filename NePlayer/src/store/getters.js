@@ -5,4 +5,7 @@ export const currentMusic=state=>state.currentMusic
 export const audio=state=>state.audio
 export const lyric=state=>state.lyric
 export const playing=state=>state.playing
-export const index=state=>state.index
+export const currentIndex=state=>state.currentIndex
+
+
+

@@ -18,6 +18,6 @@ export const setLyric=function({commit},lyric){
 export const setPlaying=function({commit},playing){
   commit(types.SET_PLAYING,playing)
 }
-export const setCurrentIndex=function({commit},index){
-  commit(types.SET_CURRENTINDEX,index)
+export const setCurrentIndex=function({commit},currentIndex){
+  commit(types.SET_CURRENTINDEX,currentIndex)
 }

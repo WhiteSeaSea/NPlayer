@@ -21,8 +21,8 @@ const mutations={
   [types.SET_PLAYING](state,playing){
     state.playing=playing
   },
-  [types.SET_CURRENTINDEX](state,index){
-    state.index=index
+  [types.SET_CURRENTINDEX](state,currentIndex){
+    state.currentIndex=currentIndex
   }
 }
 export default mutations

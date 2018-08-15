@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" onselectstart="return false" ondragstart="return false;">
     <router-view />
-    <audio ref="NebulasPlayer"></audio>
+    <audio ref="NebulasPlayer" @ended="ended"></audio>
   </div>
 </template>
 
@@ -15,12 +15,25 @@ export default {
     });
   },
   computed:{
+    playTime:()=>{
+      console.log(this.audio.currentTime)
+      return this.audio.currentTime
+    },
     ...mapGetters([
-      'audio'
+      'audio',
+      'currentIndex',
+      'currentList',
+      'currentMusic'
     ])
   },
   methods:{
-    ...mapActions(["setAudio"])
+    ended(){
+      this.setCurrentIndex(this.currentIndex+1);
+      this.setCurrentMusic(this.currentList[this.currentIndex+1]);
+      this.audio.src="http://music.163.com/song/media/outer/url?id="+this.currentMusic.id+".mp3";
+      this.audio.play();
+    },
+    ...mapActions(["setAudio","setCurrentIndex","setCurrentMusic"])
   }
 }
 </script>
