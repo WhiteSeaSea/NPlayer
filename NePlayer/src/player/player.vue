@@ -1,5 +1,6 @@
 <template>
   <div id="player">
+    <Progress />
     <Browser  class="animated " :class="{'slideInLeft':!expand,'slideOutLeft':expand}"></Browser>
     <List  class="animated " :class="{'slideInRight':!expand,'slideOutRight':expand}"></List>
     <Btnlist class="animated fadeIn"></Btnlist>
@@ -8,6 +9,7 @@
 </template>
 <script>
 import Btnlist from "./components/btnlist/btnlist"
+import Progress from "./components/progress/progress"
 import Browser from "./songbrowser/browser"
 import List from "./songlist/list"
 import Words from './words/words'
@@ -22,7 +24,8 @@ export default {
     Btnlist,
     List,
     Browser,
-    Words
+    Words,
+    Progress
   },
   computed:{
     

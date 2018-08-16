@@ -6,15 +6,14 @@
         <!-- <font-awesome-icon :icon="['fas','user-circle']" size="4x" style="color:white;"></font-awesome-icon>          -->
         <img :src="iconUrl" alt="" srcset="">
       </li>
-      <li><a href="#" class="active">我的</a></li>
-      <li><a href="#">推荐</a></li>
-      <li><a href="#">排行榜</a></li>
-      <li><a href="#">搜索</a></li>
+      <li><a href="#/player/my" :class="{active:topTab==1}" @click="setTopTab(1)">我的</a></li>
+      <li><a href="#/player/find/recommand" :class="{active:topTab==2}" @click="setTopTab(2)">发现</a></li>
+      <li><a href="#" :class="{active:topTab==3}" @click="setTopTab(3)">搜索</a></li>
     </ul>
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 import {userInfo} from '../../api/index.js'
 export default {
   data(){
@@ -29,11 +28,15 @@ export default {
         console.log(this.iconUrl)
       }
     })
+
   },
   computed:{
     ...mapGetters([
-      'uid'
+      'uid','topTab'
     ])
+  },
+  methods:{
+    ...mapActions(["setTopTab"])
   }
 }
 </script>

@@ -13,7 +13,7 @@ export default {
   
   position absolute
   left 100px
-  top 150px
+  top 130px
   bottom 100px
   width 35vw
 }

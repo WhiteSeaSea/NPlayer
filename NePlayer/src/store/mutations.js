@@ -23,6 +23,18 @@ const mutations={
   },
   [types.SET_CURRENTINDEX](state,currentIndex){
     state.currentIndex=currentIndex
+  },
+  [types.SET_CURRENTLYRICINDEX](state,currentLyricIndex){
+    state.currentLyricIndex=currentLyricIndex
+  },
+  [types.SET_MYTAB](state,myTab){
+    state.myTab=myTab
+  },
+  [types.SET_TOPTAB](state,topTab){
+    state.topTab=topTab
+  },
+  [types.SET_FINDTAB](state,findTab){
+    state.findTab=findTab
   }
 }
 export default mutations

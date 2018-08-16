@@ -18,8 +18,8 @@
         </p>
       </div>
     </div>
-    <div id="lyric">
-      <p v-for="(ly,index) in lyric" :key="index">
+    <div id="lyric" :style="{transform:'translateY('+(-currentLyricIndex)*40+'px)'}">
+      <p v-for="(ly,index) in lyric" :key="index" :class="{active:index==currentLyricIndex}">
         {{ly.lyric}} 
       </p>
     </div>
@@ -32,7 +32,7 @@ import {getLyric} from '../../api/index.js'
 export default {
   computed:{
     ...mapGetters([
-      'currentMusic','lyric','expand','playing'
+      'currentMusic','lyric','expand','playing','currentLyricIndex'
     ])
   },
   mounted() {
@@ -67,6 +67,8 @@ export default {
   letter-spacing 1px
   
   #info{
+    z-index 2
+    background rgb(53,92,125);
     position relative
     height 30%
     #pic{
@@ -97,12 +99,18 @@ export default {
     }
   }
   #lyric{
-    box-shadow 0 0 50px 0 white inset
+    //box-shadow 0 0 50px 0 white inset
+    //overflow auto
     height 70%
     p{
       height 40px
       line-height 40px
     }
+    .active{
+      color rgba(192,108,132,1)
+      font-size 25px
+    }
+    //overflow auto
   }
   
 }

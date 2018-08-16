@@ -118,6 +118,11 @@ export default {
         }));
         
       });
+      //获取歌曲URL
+      // songUrl(item.id)
+      //   .then(res=>{
+      //       console.log(res.data.data[0].url)
+      //   })
       this.audio.src="http://music.163.com/song/media/outer/url?id="+item.id+".mp3";
       this.audio.play();
       this.setPlaying(true);
@@ -173,10 +178,10 @@ export default {
     #inner-list{
       height calc(100% - 50px)
       width 100%
-      overflow hidden
-      &:hover{
-        overflow auto
-      }
+      overflow auto
+      // &:hover{
+      //   overflow auto
+      // }
       .active{
         box-shadow 0px 0px 50px 0px rgba(255,255,255,0.6) inset
         color white
