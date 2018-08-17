@@ -26,11 +26,11 @@
         <div class="song-name">
           {{song.name}}
         </div>
-        <div class="singer" :title="song.ar | formatAr">
-          {{song.ar | formatAr}}
+        <div class="singer" :title="song.hasOwnProperty('ar')==true?song.ar:song.artists  | formatAr">
+          {{song.hasOwnProperty('ar')==true?song.ar:song.artists | formatAr}}
         </div>
         <div class="song-time">
-          {{song.dt | formatTime}}
+          {{song.hasOwnProperty('dt')==true?song.dt:song.duration | formatTime}}
         </div>
       </div>
     </div>

@@ -8,6 +8,9 @@ export const login=(id,pw) => {
     params:{
       phone:id,
       password:pw
+    },
+    xhrFields: {
+      withCredentials: true
     }
   })
 }
@@ -79,4 +82,26 @@ export const getLyric=(id)=>{
       id:id
     }
   })
+}
+//获取推荐歌单
+export const getRecommandList=()=>{
+  const url=`${URL}/recommend/resource`;
+  return axios.get(url,{
+    // params:{
+    //   id:id
+    // },
+    xhrFields: {
+      withCredentials: true
+    }
+  })
+}
+//获取推荐最新音乐
+export const getRecommandNew=()=>{
+  const url=`${URL}/personalized/newsong`;
+  return axios.get(url)
+}
+//获取每日推荐
+export const getRecommandSongs=()=>{
+  const url=`${URL}/recommend/songs`;
+  return axios.get(url)
 }

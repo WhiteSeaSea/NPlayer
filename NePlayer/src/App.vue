@@ -107,7 +107,8 @@ export default {
         }
         return v
       });
-      let width=100*this.audio.currentTime/(this.currentMusic.dt/1000)+'%';
+      let width=100*this.audio.currentTime/((this.currentMusic.hasOwnProperty('dt')?this.currentMusic.dt:this.currentMusic.duration
+)/1000)+'%';
       document.getElementById("progress-line").style.width=width;
     },
     ...mapActions(["setLyric","setAudio","setCurrentIndex","setCurrentMusic","setCurrentLyricIndex"])

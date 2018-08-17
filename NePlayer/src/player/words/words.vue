@@ -2,7 +2,7 @@
   <div id="words" v-if="playing">
     <div id="info">
       <div id="pic">
-        <img v-if="currentMusic.al.picUrl" :src="currentMusic.al.picUrl" >
+        <img v-if="currentMusic.hasOwnProperty('al')||currentMusic.hasOwnProperty('album')" :src="currentMusic.hasOwnProperty('al')==true?currentMusic.al.picUrl:currentMusic.album.picUrl" >
       </div>
       <div id="intro">
         <p>
@@ -10,11 +10,11 @@
         </p>
         <p>
           <span>歌手：</span>
-          <span>{{currentMusic.ar| formatAr}}</span>
+          <span>{{currentMusic.hasOwnProperty('ar')?currentMusic.ar:currentMusic.artists| formatAr}}</span>
         </p>
         <p>
           <span>专辑：</span>
-          <span>{{currentMusic.al.name}}</span>
+          <span>{{currentMusic.hasOwnProperty('al')?currentMusic.al.name:currentMusic.album.name}}</span>
         </p>
       </div>
     </div>

@@ -29,6 +29,7 @@ export default {
   methods:{
     getMylove: function(){
       this.setMyTab(1);
+      this.setCurrentIndex(-1);
       userList(this.uid).then((res)=>{
          
           playList(res.data.playlist["0"].id).then( (res)=>{
@@ -52,6 +53,7 @@ export default {
     },
     getRecent:function(){
       this.setMyTab(2);
+      this.setCurrentIndex(-1);
       recentList(this.uid).then((res)=>{
         let songs=res.data.allData.map((v)=>{
           return v.song
@@ -64,7 +66,7 @@ export default {
          
       })
     },
-    ...mapActions(["setCurrentList","setMyTab"])
+    ...mapActions(["setCurrentList","setMyTab","setCurrentIndex"])
   }
 }
 </script>
