@@ -8,7 +8,7 @@
       </li>
       <li><a href="#/player/my" :class="{active:topTab==1}" @click="setTopTab(1)">我的</a></li>
       <li><a href="#/player/find/recommand" :class="{active:topTab==2}" @click="setTopTab(2)">发现</a></li>
-      <li><a href="#" :class="{active:topTab==3}" @click="setTopTab(3)">搜索</a></li>
+      <li><a href="#/player/search" :class="{active:topTab==3}" @click="setTopTab(3)">搜索</a></li>
     </ul>
   </div>
 </template>

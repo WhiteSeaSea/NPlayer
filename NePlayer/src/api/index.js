@@ -85,14 +85,8 @@ export const getLyric=(id)=>{
 //获取推荐歌单
 export const getRecommandList=()=>{
   const url=`${URL}/recommend/resource`;
-  return axios.get(url,{
-    // params:{
-    //   id:id
-    // },
-    xhrFields: {
-      withCredentials: true
-    }
-  })
+  return axios.get(
+    url,{withCredentials: true})
 }
 //获取推荐最新音乐
 export const getRecommandNew=()=>{
@@ -119,3 +113,13 @@ export const getRank=key=>{
     }
   })
 }
+//搜索
+export const search=(keywords,type)=>{
+  const url=`${URL}/search`;
+  return axios.get(url,{
+    params:{
+      keywords:keywords,
+      type:type
+    }
+  })
+};

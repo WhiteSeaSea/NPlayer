@@ -10,7 +10,7 @@
       </a>
     </div>
     <div id="list-body">
-      <div class="list-item" v-for="(item,index) in recommandList" :key="index">
+      <div class="list-item" v-for="(item,index) in recommandList" :key="index" @click="getDetail(item.id)">
         <img :src="item.picUrl" />
         <div :title="item.name">
           {{item.name}}
@@ -20,7 +20,7 @@
   </div>  
 </template>
 <script>
-import {getRecommandList} from '../../../../api/index.js'
+import {getRecommandList,playList} from '../../../../api/index.js'
 import {mapGetters,mapActions} from 'vuex'
 export default {
   data(){
@@ -37,6 +37,18 @@ export default {
   computed:{
     ...mapGetters([
       'uid'
+    ])
+  },
+  methods:{
+    getDetail(id){
+      playList(id).then(res=>{
+        this.setCurrentIndex(-1);
+        this.setCurrentList(res.data.playlist.tracks)
+      })
+    },
+    ...mapActions([
+      "setCurrentIndex",
+      "setCurrentList"
     ])
   }
 }

@@ -3,7 +3,7 @@
     <ul>
       <li><a href="#/player/find/recommand" :class="{active:findTab==1}" @click="setFindTab(1)">个性推荐</a></li>
       <li><a href="#" :class="{active:findTab==2}" @click="setFindTab(2)">歌单</a></li>
-      <li><a href="#" :class="{active:findTab==3}" @click="setFindTab(3)">最新</a></li>
+      
       <li><a href="#" :class="{active:findTab==4}" @click="setFindTab(4)">歌手</a></li>
       <li><a href="#/player/find/rank" :class="{active:findTab==5}" @click="setFindTab(5)">排行榜</a></li>
     </ul>
