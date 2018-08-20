@@ -17,7 +17,7 @@
       @click="play(item)"
       >
         <div class="item-index">
-          {{index<9?('0'+(index+1)):(index+1)}}
+          {{index<9? ('0'+(index+1)):(index+1)}}
         </div>
         <img :src="item.song.album.picUrl">
         <div class="item-info">
@@ -119,7 +119,10 @@ export default {
         top 5px
         left 100px
         height 50px
-        
+        .item-ar{
+          font-size 12px
+          letter-spacing 0
+        }
       }
     }
   }

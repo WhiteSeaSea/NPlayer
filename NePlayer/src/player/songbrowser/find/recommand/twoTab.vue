@@ -8,14 +8,14 @@
         今日歌曲推荐
       </span>
     </div>
-    <div id="rank">
+    <a id="rank" href="#/player/find/rank" @click="setActive">
       <div class="icon">
           <font-awesome-icon :icon="['fas','headphones']" size="2x"></font-awesome-icon> 
       </div>
       <span>
         排行榜
       </span>
-    </div>
+    </a>
   </div>  
 </template>
 <script>
@@ -28,6 +28,9 @@ export default {
   methods:{
     getRecommandSongs(){
       this.$emit('getRecommandSongs')
+    },
+    setActive(){
+      this.$emit('setActive')
     }
   }
 }
@@ -65,12 +68,18 @@ export default {
   }
   }
   #rank{
+    display block
     position absolute
     right 0
     top 0
     bottom 0
     width 50%
     padding 4% 12%
+    text-decoration none
+    &:hover{
+      box-shadow 0 0 10px 0 white inset
+    }
+    color white
     .icon{
     display inline-block
     width 50px 

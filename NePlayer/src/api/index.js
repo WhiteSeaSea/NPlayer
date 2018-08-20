@@ -9,9 +9,8 @@ export const login=(id,pw) => {
       phone:id,
       password:pw
     },
-    xhrFields: {
-      withCredentials: true
-    }
+    withCredentials: true
+    
   })
 }
 
@@ -98,10 +97,25 @@ export const getRecommandList=()=>{
 //获取推荐最新音乐
 export const getRecommandNew=()=>{
   const url=`${URL}/personalized/newsong`;
-  return axios.get(url)
+  return axios.get(
+    url,
+    { withCredentials: true }
+  )
 }
 //获取每日推荐
 export const getRecommandSongs=()=>{
   const url=`${URL}/recommend/songs`;
-  return axios.get(url)
+  return axios.get(
+    url,
+    { withCredentials: true }
+  )
+}
+//获取排行榜详情
+export const getRank=key=>{
+  const url=`${URL}/top/list`;
+  return axios.get(url,{
+    params:{
+      idx:key
+    }
+  })
 }

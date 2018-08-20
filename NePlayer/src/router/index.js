@@ -5,6 +5,7 @@ import player from "../player/player.vue"
 import my from "../player/songbrowser/my/my.vue"
 import find from "../player/songbrowser/find/find.vue"
 import recommand from "../player/songbrowser/find/recommand/recommand.vue"
+import rank from "../player/songbrowser/find/rank/rank.vue"
 import login from '../Login/login.vue'
 Vue.use(Router)
 
@@ -29,6 +30,10 @@ export default new Router({
             {
               path:'/player/find/recommand',
               component:recommand
+            },
+            {
+              path:'/player/find/rank',
+              component:rank
             }
           ]
         }

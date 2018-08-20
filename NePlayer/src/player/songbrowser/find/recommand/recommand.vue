@@ -1,6 +1,9 @@
 <template>
   <div id="recommand">
-    <two-tab @getRecommandSongs="_getRecommandSongs" />
+    <two-tab 
+      @getRecommandSongs="_getRecommandSongs"
+      @setActive="_setActive" 
+    />
     <recommand-list />
     <recommand-new @play="play" />
   </div>  
@@ -88,7 +91,17 @@ export default {
         this.setCurrentList(res.data.recommend)
       })
     },
-    ...mapActions(["setCurrentList","setCurrentMusic","setLyric","setPlaying","setCurrentIndex"])
+    _setActive(){
+      this.setFindTab(5)
+    },
+    ...mapActions([
+      "setCurrentList",
+      "setCurrentMusic",
+      "setLyric",
+      "setPlaying",
+      "setCurrentIndex",
+      "setFindTab"
+      ])
   },
   computed:{
     ...mapGetters([
