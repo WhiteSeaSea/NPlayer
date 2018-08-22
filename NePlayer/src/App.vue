@@ -1,7 +1,7 @@
 <template>
   <div id="app" onselectstart="return false" ondragstart="return false;">
     <router-view />
-    <audio ref="NebulasPlayer" @ended="ended" @timeupdate="onplaying"></audio>
+    <audio crossOrigin="anonymous" ref="NebulasPlayer" @ended="ended" @timeupdate="onplaying"></audio>
   </div>
 </template>
 

@@ -5,6 +5,7 @@
     <List  class="animated " :class="{'slideInRight':!expand,'slideOutRight':expand}"></List>
     <Btnlist class="animated fadeIn"></Btnlist>
     <Words class="animated" :class="{'fadeIn':expand,'fadeOut':!expand}"></Words>
+    <Visual v-if="playing" />
   </div>
 </template>
 <script>
@@ -13,6 +14,7 @@ import Progress from "./components/progress/progress"
 import Browser from "./songbrowser/browser"
 import List from "./songlist/list"
 import Words from './words/words'
+import Visual from './musicVisual/visual'
 import {mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
   data(){
@@ -25,7 +27,8 @@ export default {
     List,
     Browser,
     Words,
-    Progress
+    Progress,
+    Visual
   },
   computed:{
     
@@ -33,7 +36,8 @@ export default {
       'audio',
       'expand',
       'currentIndex',
-      'currentMusic'
+      'currentMusic',
+      'playing'
     ])
   },
   watch:{
