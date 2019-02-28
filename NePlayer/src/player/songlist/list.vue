@@ -119,13 +119,15 @@ export default {
         
       });
       //获取歌曲URL
-      // songUrl(item.id)
-      //   .then(res=>{
-      //       console.log(res.data.data[0].url)
-      //   })
-      this.audio.src="http://music.163.com/song/media/outer/url?id="+item.id+".mp3";
-      this.audio.play();
-      this.setPlaying(true);
+      songUrl(item.id)
+        .then(res=>{
+            console.log(res.data.data[0].url)
+            //this.audio.src="http://music.163.com/song/media/outer/url?id="+item.id+".mp3";
+            this.audio.src=res.data.data[0].url;
+            this.audio.play();
+            this.setPlaying(true);
+        })
+     
       
     },
     ...mapActions(["setCurrentMusic","setLyric","setPlaying","setCurrentIndex"])

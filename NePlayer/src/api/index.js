@@ -66,7 +66,7 @@ export const songDetail=(id)=>{
 }
 //获取歌曲url
 export const songUrl=(id)=>{
-  const url=`${URL}/music/url`;
+  const url=`${URL}/song/url`;
   return axios.get(url,{
     params:{
       id:id
