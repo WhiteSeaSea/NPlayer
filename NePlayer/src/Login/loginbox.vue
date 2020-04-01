@@ -19,7 +19,7 @@
             <input type="password" name="" v-model="password">
             <font-awesome-icon :icon="['fas','lock']" size="2x" style="color:#cfdef3;position:absolute;right:15px;top:14px;"></font-awesome-icon>
         </div>
-        <a id="confirm" v-on:click="Login">
+        <a id="confirm" v-on:click="loginRe">
           LOGIN
         </a>
       </div>
@@ -41,8 +41,14 @@ export default {
     ])
   },
   methods:{
+  
+	loginRe(){
+	this.$router.push({path:'/player/my'});
+	},
+	
     Login:function(){
        //console.log(this.$router.push)
+	   
       login(this.id,this.password)
             .then((res)=>{
                 
