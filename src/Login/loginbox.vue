@@ -8,12 +8,12 @@
           <div id="pic">
             <font-awesome-icon :icon="['fas','user-circle']" size="4x" style="color:#cfdef3;"></font-awesome-icon>
           </div>
-                             
+
         </div>
         <div id="user" class="input-form">
             <input type="text" name="" v-model="id">
-            
-            <font-awesome-icon :icon="['fas','user']" size="2x" style="color:#cfdef3;position:absolute;right:15px;top:14px;"></font-awesome-icon>            
+
+            <font-awesome-icon :icon="['fas','user']" size="2x" style="color:#cfdef3;position:absolute;right:15px;top:14px;"></font-awesome-icon>
         </div>
         <div id="password" class="input-form">
             <input type="password" name="" v-model="password">
@@ -23,7 +23,7 @@
           LOGIN
         </a>
       </div>
-    </div>  
+    </div>
 </template>
 <script>
 import {login} from '../api/index.js'
@@ -41,22 +41,22 @@ export default {
     ])
   },
   methods:{
-  
+
 	loginRe(){
 	this.$router.push({path:'/player/my'});
 	},
-	
+
     Login:function(){
        //console.log(this.$router.push)
-	   
+
       login(this.id,this.password)
             .then((res)=>{
-                
+
                 if(res.data.code===200){
-                  
+
                   this.$router.push({path:'/player/my'});
                   this.setUid(res.data.account.id);
-                  
+
                 }else{
                   if(res.data.msg){
                     alert(res.data.msg)
@@ -93,7 +93,7 @@ export default {
       border 2px solid #cfdef3
       border-radius 40px
       margin-bottom 20px
-      padding 0 45px 
+      padding 0 45px
       position relative
       input{
         height 100%
@@ -117,7 +117,7 @@ export default {
        width auto
        margin 0 auto
        margin-bottom 40px
-      
+
        text-align center
     }
     #confirm{

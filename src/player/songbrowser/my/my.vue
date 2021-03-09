@@ -3,17 +3,17 @@
     <div id="my-love" class="my-icon" :class="{active:myTab==1}" v-on:click="getMylove">
       <font-awesome-icon :icon="['fas','heart']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>收藏</span>
-      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>      
+      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>
     </div>
     <div id="recent" class="my-icon" :class="{active:myTab==2}" v-on:click="getRecent">
       <font-awesome-icon :icon="['fas','clock']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>最近播放</span>
-      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
+      <font-awesome-icon :icon="['fas','angle-right']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>
     </div>
     <div id="my-list" class="my-icon" :class="{active:myTab==3}" v-on:click="getUserList">
       <font-awesome-icon :icon="['fas','music']" size="2x" style="color:white;margin-right:20px;border:1px solid white;padding:5px;border-radius:50%;"></font-awesome-icon>
       <span>歌单</span>
-      <font-awesome-icon :icon="['fas','angle-down']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>            
+      <font-awesome-icon :icon="['fas','angle-down']" size="2x" style="color:white;position:absolute;right:25px;top:16px;"></font-awesome-icon>
     </div>
   </div>
 </template>
@@ -31,20 +31,20 @@ export default {
       this.setMyTab(1);
       this.setCurrentIndex(-1);
       userList(this.uid).then((res)=>{
-         
+
           playList(res.data.playlist["0"].id).then( (res)=>{
             let songs=new Array();
             let temp= Promise.all(res.data.privileges.map(async function(value,index){
               let song=[];
               await songDetail(value.id)
                 .then( (res)=>{   song=res.data.songs["0"];});
-                
+
                 return song
             }))
             temp.then((res)=>{this.setCurrentList(res)})
-           
-            
-            
+
+
+
           })
           .catch(function(error){
                 console.log(error)
@@ -63,7 +63,7 @@ export default {
     },
     getUserList:function(){
        userList(this.uid).then((res)=>{
-         
+
       })
     },
     ...mapActions(["setCurrentList","setMyTab","setCurrentIndex"])
@@ -99,7 +99,7 @@ export default {
       transition all 1s ease-in-out
       opacity 0
     }
-    
+
     &:hover{
       background: rgba(217,167,199,0.6);  /* fallback for old browsers */
       background: -webkit-linear-gradient(to left, rgba(217,167,199,0.6), rgba(255,252,220,0.6),transparent);  /* Chrome 10-25, Safari 5.1-6 */
@@ -107,17 +107,17 @@ export default {
       .fa-angle-right{
         opacity 1
       }
-     
+
     }
     span{
       font-size 25px
     }
   }
   #my-love{
-    
+
   }
   #recent{
-   
+
   }
   #my-list{
    .fa-angle-down{
@@ -128,7 +128,7 @@ export default {
        .fa-angle-down{
         transition all 1s ease-in-out
         opacity 1
-      } 
+      }
     }
   }
 }
